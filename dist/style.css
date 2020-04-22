@@ -21,6 +21,10 @@ body {
   align-items: center;
   margin: 0;
 }
+a {
+  text-decoration: none;
+  color: #fe8daa;
+}
 
 .music-container {
   background-color: white;
