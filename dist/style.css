@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    0deg,
+    rgba(247, 247, 247, 1) 23.8%,
+    rgba(252, 221, 221, 1) 92%
+  );
+  /* background-color: #faaca8;
+  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%); */
+  font-family: 'Lato', sans-serif;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.music-container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+
+  display: flex;
+  padding: 20px 30px;
+  position: relative;
+  margin: 100px 0;
+  z-index: 10;
+}
+
+/************************* Image container styling and animation */
+.img-container {
+  position: relative;
+  width: 110px;
+}
+.img-container img {
+  border-radius: 50%;
+  height: 110px;
+  width: inherit;
+
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+
+  animation: rotate 7s linear infinite;
+  animation-play-state: paused;
+}
+/* When the music container has a class of play then we want the image container image to be: */
+.music-container.play .img-container img {
+  animation-play-state: running;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Adding a ghost element using css. */
+.img-container::after {
+  content: '';
+  background-color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+
+  transform: translate(-50%, 50%);
+}
+
+/************************* Navigation and navigation button styling */
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.action-btn {
+  background-color: white;
+  color: #dfdbdf;
+  border: 0;
+  font-size: 20px;
+  margin: 20px;
+  cursor: pointer;
+
+  transition: transform 0.1s ease;
+}
+.action-btn:hover {
+  transform: scale(1.5);
+}
+.action-btn:focus {
+  outline: 0;
+}
+.action-btn.action-btn-big {
+  color: #cdc2d0;
+  font-size: 30px;
+}
+
+/************************* Styling the music info area */
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 120px;
+
+  opacity: 0;
+
+  position: absolute;
+  top: 0;
+  left: 20px;
+
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+}
+
+.progress-container {
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+.progress {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 4px;
+  width: 0%;
+
+  transition: width 0.1 linear;
+}
